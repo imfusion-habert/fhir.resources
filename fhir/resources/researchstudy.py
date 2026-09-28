@@ -273,6 +273,19 @@ class ResearchStudy(domainresource.DomainResource):
         },
     )
 
+    relatesTo: typing.List[fhirtypes.ResearchStudyRelatesToType] | None = Field(
+        default=None,
+        alias="relatesTo",
+        title="Relationships to other Resources",
+        description=(
+            "Relationships that this ResearchStudy has with other FHIR or non-FHIR "
+            "resources that already exist."
+        ),
+        json_schema_extra={
+            "element_property": True,
+        },
+    )
+
     period: fhirtypes.PeriodType | None = Field(
         default=None,
         alias="period",
@@ -536,6 +549,7 @@ class ResearchStudy(domainresource.DomainResource):
             "label",
             "protocol",
             "partOf",
+            "relatesTo",
             "relatedArtifact",
             "date",
             "status",
@@ -1202,3 +1216,168 @@ class ResearchStudyRecruitment(backboneelement.BackboneElement):
         with preserving the original sequence order.
         """
         return ["modifierExtension", "actualGroup"]
+
+
+class ResearchStudyRelatesTo(backboneelement.BackboneElement):
+    """Disclaimer: Any field name ends with ``__ext`` doesn't part of
+    Resource StructureDefinition, instead used to enable Extensibility feature
+    for FHIR Primitive Data Types.
+
+    Relationships to other Resources.
+    Relationships that this ResearchStudy has with other FHIR or non-FHIR
+    resources that already exist.
+    """
+
+    __resource_type__ = "ResearchStudyRelatesTo"
+
+    type: fhirtypes.CodeableConceptType = Field(
+        default=...,
+        alias="type",
+        title=(
+            "documentation | justification | citation | predecessor | successor "
+            "| derived-from | depends-on | composed-of | part-of | amends | amended-with "
+            "| appends | appended-with | cites | cited-by | comments-on | comment-in "
+            "| contains | contained-in | corrects | correction-in | replaces "
+            "| replaced-with | retracts | retracted-by | signs | similar-to | supports "
+            "| supported-with | transforms | transformed-into | transformed-with "
+            "| documents | specification-of | created-with | cite-as | reprint "
+            "| reprint-of | summarizes"
+        ),
+        description="The type of relationship to the related artifact.",
+        json_schema_extra={
+            "element_property": True,
+        },
+    )
+
+    targetAttachment: fhirtypes.AttachmentType | None = Field(
+        default=None,
+        alias="targetAttachment",
+        title="The artifact that is related to this ResearchStudy Resource",
+        description="The artifact that is related to this ResearchStudy.",
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e target[x]
+            "one_of_many": "target",
+            "one_of_many_required": True,
+        },
+    )
+
+    targetCanonical: fhirtypes.CanonicalType | None = Field(
+        default=None,
+        alias="targetCanonical",
+        title="The artifact that is related to this ResearchStudy Resource",
+        description="The artifact that is related to this ResearchStudy.",
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e target[x]
+            "one_of_many": "target",
+            "one_of_many_required": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Resource"],
+        },
+    )
+    targetCanonical__ext: fhirtypes.FHIRPrimitiveExtensionType | None = Field(
+        default=None,
+        alias="_targetCanonical",
+        title="Extension field for ``targetCanonical``.",
+    )
+
+    targetMarkdown: fhirtypes.MarkdownType | None = Field(
+        default=None,
+        alias="targetMarkdown",
+        title="The artifact that is related to this ResearchStudy Resource",
+        description="The artifact that is related to this ResearchStudy.",
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e target[x]
+            "one_of_many": "target",
+            "one_of_many_required": True,
+        },
+    )
+    targetMarkdown__ext: fhirtypes.FHIRPrimitiveExtensionType | None = Field(
+        default=None,
+        alias="_targetMarkdown",
+        title="Extension field for ``targetMarkdown``.",
+    )
+
+    targetReference: fhirtypes.ReferenceType | None = Field(
+        default=None,
+        alias="targetReference",
+        title="The artifact that is related to this ResearchStudy Resource",
+        description="The artifact that is related to this ResearchStudy.",
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e target[x]
+            "one_of_many": "target",
+            "one_of_many_required": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Resource"],
+        },
+    )
+
+    targetUri: fhirtypes.UriType | None = Field(
+        default=None,
+        alias="targetUri",
+        title="The artifact that is related to this ResearchStudy Resource",
+        description="The artifact that is related to this ResearchStudy.",
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e target[x]
+            "one_of_many": "target",
+            "one_of_many_required": True,
+        },
+    )
+    targetUri__ext: fhirtypes.FHIRPrimitiveExtensionType | None = Field(
+        default=None,
+        alias="_targetUri",
+        title="Extension field for ``targetUri``.",
+    )
+
+    @classmethod
+    def elements_sequence(cls) -> typing.List[str]:
+        """returning all element names from
+        ``ResearchStudyRelatesTo`` according to specification,
+        with preserving the original sequence order.
+        """
+        return [
+            "id",
+            "extension",
+            "modifierExtension",
+            "type",
+            "targetUri",
+            "targetAttachment",
+            "targetCanonical",
+            "targetReference",
+            "targetMarkdown",
+        ]
+
+    @classmethod
+    def summary_elements_sequence(cls) -> typing.List[str]:
+        """returning all element names (those have summary mode are enabled) from ``ResearchStudyRelatesTo`` according to specification,
+        with preserving the original sequence order.
+        """
+        return ["modifierExtension"]
+
+    def get_one_of_many_fields(self) -> typing.Dict[str, typing.List[str]]:
+        """https://www.hl7.org/fhir/formats.html#choice
+        A few elements have a choice of more than one data type for their content.
+        All such elements have a name that takes the form nnn[x].
+        The "nnn" part of the name is constant, and the "[x]" is replaced with
+        the title-cased name of the type that is actually used.
+        The table view shows each of these names explicitly.
+
+        Elements that have a choice of data type cannot repeat - they must have a
+        maximum cardinality of 1. When constructing an instance of an element with a
+        choice of types, the authoring system must create a single element with a
+        data type chosen from among the list of permitted data types.
+        """
+        one_of_many_fields = {
+            "target": [
+                "targetAttachment",
+                "targetCanonical",
+                "targetMarkdown",
+                "targetReference",
+                "targetUri",
+            ]
+        }
+        return one_of_many_fields

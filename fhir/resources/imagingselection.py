@@ -80,6 +80,21 @@ class ImagingSelection(domainresource.DomainResource):
         },
     )
 
+    modality: fhirtypes.CodeableConceptType | None = Field(
+        default=None,
+        alias="modality",
+        title="The distinct modality",
+        description=(
+            "The distinct modality for this selected series. This MAY be either an "
+            "acquisition modality (e.g. CT, MR) or a non-acquisition modality (e.g. "
+            "segmentation, presentation state)."
+        ),
+        json_schema_extra={
+            "element_property": True,
+            "summary_element_property": True,
+        },
+    )
+
     code: fhirtypes.CodeableConceptType = Field(
         default=...,
         alias="code",
@@ -343,6 +358,7 @@ class ImagingSelection(domainresource.DomainResource):
             "performer",
             "basedOn",
             "category",
+            "modality",
             "code",
             "studyUid",
             "derivedFrom",
@@ -372,6 +388,7 @@ class ImagingSelection(domainresource.DomainResource):
             "performer",
             "basedOn",
             "category",
+            "modality",
             "code",
             "studyUid",
             "derivedFrom",

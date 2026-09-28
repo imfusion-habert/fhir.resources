@@ -1931,6 +1931,8 @@ if TYPE_CHECKING:
 
     ResearchStudyRecruitmentType = researchstudy.ResearchStudyRecruitment
 
+    ResearchStudyRelatesToType = researchstudy.ResearchStudyRelatesTo
+
     ResearchSubjectType = researchsubject.ResearchSubject
 
     ResearchSubjectProgressType = researchsubject.ResearchSubjectProgress
@@ -5354,6 +5356,11 @@ else:
         "fhir.resources.researchstudy.ResearchStudyRecruitment",
     )
 
+    ResearchStudyRelatesToType = create_fhir_type(
+        "ResearchStudyRelatesToType",
+        "fhir.resources.researchstudy.ResearchStudyRelatesTo",
+    )
+
     ResearchSubjectType = create_fhir_type(
         "ResearchSubjectType", "fhir.resources.researchsubject.ResearchSubject"
     )
@@ -6826,6 +6833,7 @@ __all__ = [
     "ResearchStudyOutcomeMeasureType",
     "ResearchStudyProgressStatusType",
     "ResearchStudyRecruitmentType",
+    "ResearchStudyRelatesToType",
     "ResearchSubjectType",
     "ResearchSubjectProgressType",
     "ResourceType",
