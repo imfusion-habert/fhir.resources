@@ -1230,8 +1230,18 @@ class ResearchStudyRelatesTo(backboneelement.BackboneElement):
 
     __resource_type__ = "ResearchStudyRelatesTo"
 
-    type: fhirtypes.CodeableConceptType = Field(
-        default=...,
+    category: fhirtypes.CodingType | None = Field(
+        default=None,
+        alias="category",
+        title="Category of the relationship",
+        description=None,
+        json_schema_extra={
+            "element_property": True,
+        },
+    )
+
+    type: fhirtypes.CodeType | None = Field(
+        default=None,
         alias="type",
         title=(
             "documentation | justification | citation | predecessor | successor "
@@ -1246,7 +1256,11 @@ class ResearchStudyRelatesTo(backboneelement.BackboneElement):
         description="The type of relationship to the related artifact.",
         json_schema_extra={
             "element_property": True,
+            "element_required": True,
         },
+    )
+    type__ext: fhirtypes.FHIRPrimitiveExtensionType | None = Field(
+        default=None, alias="_type", title="Extension field for ``type``."
     )
 
     targetAttachment: fhirtypes.AttachmentType | None = Field(
@@ -1343,6 +1357,7 @@ class ResearchStudyRelatesTo(backboneelement.BackboneElement):
             "id",
             "extension",
             "modifierExtension",
+            "category",
             "type",
             "targetUri",
             "targetAttachment",
@@ -1357,6 +1372,17 @@ class ResearchStudyRelatesTo(backboneelement.BackboneElement):
         with preserving the original sequence order.
         """
         return ["modifierExtension"]
+
+    def get_required_fields(self) -> typing.List[typing.Tuple[str, str]]:
+        """https://www.hl7.org/fhir/extensibility.html#Special-Case
+        In some cases, implementers might find that they do not have appropriate data for
+        an element with minimum cardinality = 1. In this case, the element must be present,
+        but unless the resource or a profile on it has made the actual value of the primitive
+        data type mandatory, it is possible to provide an extension that explains why
+        the primitive value is not present.
+        """
+        required_fields = [("type", "type__ext")]
+        return required_fields
 
     def get_one_of_many_fields(self) -> typing.Dict[str, typing.List[str]]:
         """https://www.hl7.org/fhir/formats.html#choice
